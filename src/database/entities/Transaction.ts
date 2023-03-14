@@ -24,11 +24,11 @@ export class Transaction {
 
   @ManyToOne(() => Category, { onDelete: "CASCADE", onUpdate: "CASCADE" })
   @JoinColumn({ name: "category_id" })
-  category_id: Category;
+  category_id: string;
 
   @ManyToOne(() => User, { onDelete: "CASCADE", onUpdate: "CASCADE" })
   @JoinColumn({ name: "user_id" })
-  user_id: User;
+  user_id: string;
 
   @Column()
   type: string;

@@ -1,14 +1,33 @@
+import AppError from "@shared/errors/AppError";
 import { Request, Response } from "express";
-import { CreateUserUseCase } from "./CreateTransactionUseCase";
+import { CreateTransactionUseCase } from "./CreateTransactionUseCase";
 
-export class CreateUserController {
-  constructor(private createUserUseCase: CreateUserUseCase) {}
+export class CreateTransactionController {
+  constructor(private createTransactionsUseCase: CreateTransactionUseCase) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const { name, email, password } = req.body;
+    const { type, description, value, category_id } = req.body;
+    const user_id = req.user.id;
 
-    await this.createUserUseCase.execute({ name, email, password });
+    if (!user_id) {
+      throw new AppError("Unauthorized!", 401);
+    }
 
-    return res.status(201).json({ message: "User successfully created!" });
+    if (
+      !["entrada", "income", "saída", "outcome"].includes(type.toLowerCase()) &&
+      !["in", "out"].includes(type.toLowerCase())
+    ) {
+      throw new AppError("Invalid transaction type", 400);
+    }
+
+    const transaction = await this.createTransactionsUseCase.execute({
+      type,
+      description,
+      value,
+      category_id,
+      user_id,
+    });
+
+    return res.status(201).json(transaction);
   }
 }

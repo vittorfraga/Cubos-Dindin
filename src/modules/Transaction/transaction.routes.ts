@@ -1,17 +1,14 @@
 import { IsAuthenticated } from "@shared/middlewares/isAuthenticated";
 import { Router } from "express";
-import { createUserController } from "./UseCases/CreateTransaction";
-import { deleteUserController } from "./UseCases/DeleteUser";
-import { listUserController } from "./UseCases/ListUser ";
-import { updateUserController } from "./UseCases/UpdateUser";
+import { createTransactionController } from "./UseCases/CreateTransaction";
 
-const userRoutes = Router();
+const transactionRoutes = Router();
 
-userRoutes.post("/user", (req, res) => {
-  return createUserController.handle(req, res);
+transactionRoutes.post("/transaction", IsAuthenticated, (req, res) => {
+  return createTransactionController.handle(req, res);
 });
 
-userRoutes.get("/user", IsAuthenticated, (req, res) => {
+/*userRoutes.get("/user", IsAuthenticated, (req, res) => {
   return listUserController.handle(req, res);
 });
 
@@ -21,6 +18,6 @@ userRoutes.put("/user", IsAuthenticated, (req, res) => {
 
 userRoutes.delete("/user", IsAuthenticated, (req, res) => {
   return deleteUserController.handle(req, res);
-});
+});*/
 
-export default userRoutes;
+export default transactionRoutes;

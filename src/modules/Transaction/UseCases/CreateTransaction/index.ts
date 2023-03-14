@@ -1,10 +1,18 @@
-import { TypeOrmUsersRepository } from "src/repositories/implementations/TypeormUsersRepository";
-import { CreateUserController } from "./CreateTransactionController";
-import { CreateUserUseCase } from "./CreateTransactionUseCase";
+import { TypeOrmCategoryRepository } from "src/repositories/implementations/TypeOrmCategoryRepository";
+import { TypeOrmTransactionsRepository } from "src/repositories/implementations/TypeOrmTransactionsRepository";
+import { CreateTransactionController } from "./CreateTransactionController";
+import { CreateTransactionUseCase } from "./CreateTransactionUseCase";
 
-const typeOrmUsersRepository = new TypeOrmUsersRepository();
+const typeOrmTransactionsRepository = new TypeOrmTransactionsRepository();
+const typeOrmCategoryRepository = new TypeOrmCategoryRepository();
 
-const createUserUseCase = new CreateUserUseCase(typeOrmUsersRepository);
-const createUserController = new CreateUserController(createUserUseCase);
+const createTransactionUseCase = new CreateTransactionUseCase(
+  typeOrmTransactionsRepository,
+  typeOrmCategoryRepository
+);
 
-export { createUserUseCase, createUserController };
+const createTransactionController = new CreateTransactionController(
+  createTransactionUseCase
+);
+
+export { createTransactionUseCase, createTransactionController };

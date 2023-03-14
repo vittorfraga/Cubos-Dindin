@@ -1,27 +1,38 @@
-import AppError from "@shared/errors/AppError";
-import { hash } from "bcrypt";
-import { User } from "src/database/entities/User";
-import { IUsersRepository } from "src/repositories/IUsersRepository";
-import { CreateUserDTO } from "./CreateTransactionDTO";
+import { Transaction } from "src/database/entities/Transaction";
+import { ICategoryRepository } from "src/repositories/ICategoryRepository";
 
-export class CreateUserUseCase {
-  constructor(private usersRepository: IUsersRepository) {}
+import { ITransactionsRepository } from "src/repositories/ITransactionsRepository";
 
-  async execute({ name, email, password }: CreateUserDTO) {
-    const userAlreadyExists = await this.usersRepository.findByEmail(email);
+import { CreateTransactionDTO } from "./CreateTransactionDTO";
 
-    if (userAlreadyExists) {
-      throw new AppError("User already exists!", 400);
-    }
+export class CreateTransactionUseCase {
+  constructor(
+    private transactionsRepository: ITransactionsRepository,
+    private categoryRepository: ICategoryRepository
+  ) {}
 
-    const user = new User();
+  async execute({
+    type,
+    description,
+    value,
+    category_id,
+    user_id,
+  }: CreateTransactionDTO) {
+    const transaction = new Transaction();
 
-    const hashedPassword = await hash(password, 10);
+    transaction.description = description;
+    transaction.value = value;
+    transaction.category_id = category_id;
+    transaction.user_id = user_id;
+    transaction.type = type;
 
-    user.name = name;
-    user.email = email;
-    user.password = hashedPassword;
+    await this.transactionsRepository.save(transaction);
 
-    await this.usersRepository.save(user);
+    const category = await this.categoryRepository.findById(category_id);
+    const categoryName = category?.name;
+
+    const transactionCreated = { ...transaction, categoryName };
+
+    return transactionCreated;
   }
 }
