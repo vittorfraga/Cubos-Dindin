@@ -1,4 +1,4 @@
-# Cubos Dindin - under construction!
+# Cubos Dindin - in Progress!!
 
 ### Refactoring the 3rd module project from Cubos Academy using `typescript`
 
