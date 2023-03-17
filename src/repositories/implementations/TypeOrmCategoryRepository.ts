@@ -1,6 +1,6 @@
-import { AppDataSource } from "src/database/dataSource";
-import { Category } from "src/database/entities/Category";
-import { ICategoryRepository } from "../ICategoryRepository";
+import { AppDataSource } from "@database/dataSource";
+import { Category } from "@database/entities/Category";
+import { ICategoryRepository } from "@repositories/ICategoryRepository";
 
 export class TypeOrmCategoryRepository implements ICategoryRepository {
   private categoryRepository = AppDataSource.manager.getRepository(Category);

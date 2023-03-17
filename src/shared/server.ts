@@ -18,7 +18,7 @@ AppDataSource.initialize().then(() => {
         .status(error.statusCode)
         .json({ status: "error", message: error.message });
     }
-    console.log(error.message);
+    console.log(error);
     return res
       .status(500)
       .json({ status: "error", message: "Internal server error" });

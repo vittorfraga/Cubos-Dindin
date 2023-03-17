@@ -1,6 +1,6 @@
-import { AppDataSource } from "src/database/dataSource";
-import { Transaction } from "src/database/entities/Transaction";
-import { ITransactionsRepository } from "../ITransactionsRepository";
+import { AppDataSource } from "@database/dataSource";
+import { Transaction } from "@database/entities/Transaction";
+import { ITransactionsRepository } from "@repositories/ITransactionsRepository";
 
 export class TypeOrmTransactionsRepository implements ITransactionsRepository {
   private transactionsRepository =

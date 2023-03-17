@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --no-notify -r tsconfig-paths/register src/shared/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
   },
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
@@ -27,10 +28,13 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.17",
+    "@types/jest": "^29.4.3",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.0",
     "@types/nodemailer": "^6.4.7",
     "@types/uuid": "^9.0.1",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.0.5",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.5"

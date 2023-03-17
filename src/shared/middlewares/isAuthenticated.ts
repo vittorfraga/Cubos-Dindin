@@ -27,7 +27,7 @@ export const IsAuthenticated = async (
 
   const user = await usersRepository.findById(id);
   if (!user) {
-    throw new AppError("Não autorizado!", 401);
+    throw new AppError("Unauthorized!", 401);
   }
 
   const { password: _, ...loggedUser } = user;
