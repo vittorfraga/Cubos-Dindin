@@ -2,14 +2,10 @@ import AppError from "@shared/errors/AppError";
 import { Category } from "src/database/entities/Category";
 import { ICategoryRepository } from "src/repositories/ICategoryRepository";
 
-interface CreateCategoryDTO {
-  name: string;
-}
-
 export class CreateCategoryUseCase {
   constructor(private categoryRepository: ICategoryRepository) {}
 
-  async execute({ name }: CreateCategoryDTO) {
+  async execute(name: string) {
     const categoryAlreadyExists = await this.categoryRepository.findByName(
       name
     );
@@ -18,10 +14,8 @@ export class CreateCategoryUseCase {
       throw new AppError("Category already exists!", 400);
     }
 
-    const category = new Category();
+    const category = await this.categoryRepository.create(name);
 
-    category.name = name;
-
-    await this.categoryRepository.save(category);
+    return category;
   }
 }

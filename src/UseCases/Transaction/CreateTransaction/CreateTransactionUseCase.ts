@@ -1,3 +1,4 @@
+import AppError from "@shared/errors/AppError";
 import { Transaction } from "src/database/entities/Transaction";
 import { ICategoryRepository } from "src/repositories/ICategoryRepository";
 
@@ -18,17 +19,21 @@ export class CreateTransactionUseCase {
     category_id,
     user_id,
   }: CreateTransactionDTO) {
-    const transaction = new Transaction();
-
-    transaction.description = description;
-    transaction.value = value;
-    transaction.category_id = category_id;
-    transaction.user_id = user_id;
-    transaction.type = type;
-
-    await this.transactionsRepository.save(transaction);
+    const transaction = await this.transactionsRepository.create({
+      type,
+      description,
+      value,
+      user_id,
+      category_id,
+    });
 
     const category = await this.categoryRepository.findById(category_id);
+    console.log(category);
+
+    if (!category) {
+      throw new AppError("Invalid category id", 400);
+    }
+
     const categoryName = category?.name;
 
     const transactionCreated = { ...transaction, categoryName };

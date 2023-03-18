@@ -5,5 +5,6 @@ export interface ICategoryRepository {
   findById(id: string): Promise<Category | undefined>;
   delete(id: string): Promise<void>;
   save(category: Category): Promise<void>;
-  findAll(): Promise<Category[]>;
+  //TO DO   findAll(): Promise<Category[]>;
+  create(category: String): Promise<Category | undefined>;
 }

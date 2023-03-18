@@ -5,6 +5,14 @@ import { ICategoryRepository } from "@repositories/ICategoryRepository";
 export class TypeOrmCategoryRepository implements ICategoryRepository {
   private categoryRepository = AppDataSource.manager.getRepository(Category);
 
+  async create(name: string): Promise<Category> {
+    const category = await this.categoryRepository.create({ name });
+
+    await this.categoryRepository.save(category);
+
+    return category;
+  }
+
   async findAll(): Promise<Category[]> {
     const categories = await this.categoryRepository.find();
     return categories;

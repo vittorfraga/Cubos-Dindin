@@ -1,10 +1,14 @@
-import { TypeOrmUsersRepository } from "src/repositories/implementations/TypeormUsersRepository";
-import { DeleteUserController } from "./DeleteUserController";
-import { DeleteUserUseCase } from "./DeleteUserUseCase";
+import { TypeOrmTransactionsRepository } from "@repositories/implementations/TypeOrmTransactionsRepository";
+import { DeleteTransactionController } from "./DeleteTransactionController";
+import { DeleteTransactionUseCase } from "./DeleteTransactionUseCase";
 
-const typeOrmUsersRepository = new TypeOrmUsersRepository();
+const typeOrmTransactionRepository = new TypeOrmTransactionsRepository();
 
-const deleteUserUseCase = new DeleteUserUseCase(typeOrmUsersRepository);
-const deleteUserController = new DeleteUserController(deleteUserUseCase);
+const deleteTransactionUseCase = new DeleteTransactionUseCase(
+  typeOrmTransactionRepository
+);
+const deleteTransactionController = new DeleteTransactionController(
+  deleteTransactionUseCase
+);
 
-export { deleteUserUseCase, deleteUserController };
+export { deleteTransactionUseCase, deleteTransactionController };

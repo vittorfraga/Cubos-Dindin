@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --no-notify -r tsconfig-paths/register src/shared/server.ts",
+    "dev": "ts-node-dev --inspect --transpile-only  --ignore-watch node_modules --respawn --no-notify -r tsconfig-paths/register src/shared/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "keywords": [],

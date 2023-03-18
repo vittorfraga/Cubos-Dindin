@@ -1,7 +1,7 @@
-import categoryRoutes from "@modules/Category/category.routes";
-import sessionRoutes from "@modules/Session/session.routes";
-import transactionRoutes from "@modules/Transaction/transaction.routes";
-import userRoutes from "@modules/User/user.routes";
+import categoryRoutes from "@UseCases/Category/category.routes";
+import sessionRoutes from "@UseCases/Session/session.routes";
+import transactionRoutes from "@UseCases/Transaction/transaction.routes";
+import userRoutes from "@UseCases/User/user.routes";
 import { Router } from "express";
 
 const routes = Router();

@@ -3,14 +3,10 @@ import AppError from "@shared/errors/AppError";
 
 import { ListUserDTO } from "./ListUserDTO";
 
-interface IRequest {
-  id: string;
-}
-
 class ListUserUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
-  async execute({ id }: IRequest): Promise<ListUserDTO> {
+  async execute(id: string): Promise<ListUserDTO> {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {

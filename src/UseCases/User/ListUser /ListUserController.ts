@@ -12,7 +12,7 @@ export class ListUserController {
       throw new AppError("Unauthorized", 401);
     }
 
-    const user = await this.listUserUseCase.execute({ id });
+    const user = await this.listUserUseCase.execute(id);
 
     return res.status(201).json(user);
   }

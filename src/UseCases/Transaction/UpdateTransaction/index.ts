@@ -1,10 +1,15 @@
-import { TypeOrmUsersRepository } from "src/repositories/implementations/TypeormUsersRepository";
-import { UpdateUserController } from "./UpdateUserController";
-import { UpdateUserUseCase } from "./UpdateUserUseCase";
+import { TypeOrmTransactionsRepository } from "@repositories/implementations/TypeOrmTransactionsRepository";
+import { UpdateTransactionController } from "./UpdateTransactionController";
+import { UpdateTransactionUseCase } from "./UpdateTransactionUseCase";
 
-const typeOrmUsersRepository = new TypeOrmUsersRepository();
+const typeOrmTransactionsRepository = new TypeOrmTransactionsRepository();
 
-const updateUserUseCase = new UpdateUserUseCase(typeOrmUsersRepository);
-const updateUserController = new UpdateUserController(updateUserUseCase);
+const updateTransactionUseCase = new UpdateTransactionUseCase(
+  typeOrmTransactionsRepository
+);
 
-export { updateUserUseCase, updateUserController };
+const updateTransactionController = new UpdateTransactionController(
+  updateTransactionUseCase
+);
+
+export { updateTransactionUseCase, updateTransactionController };

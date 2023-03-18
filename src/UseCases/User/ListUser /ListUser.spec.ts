@@ -18,7 +18,7 @@ describe("ListUserUseCase", () => {
       password: "123456",
     });
 
-    const userProfile = await listUser.execute({ id: createdUser.id });
+    const userProfile = await listUser.execute(createdUser.id);
 
     expect(userProfile).toMatchObject({
       id: createdUser.id,
@@ -28,8 +28,8 @@ describe("ListUserUseCase", () => {
   });
 
   it("should not be able to list a non-existing user", async () => {
-    await expect(
-      listUser.execute({ id: "non-existing-id" })
-    ).rejects.toBeInstanceOf(AppError);
+    await expect(listUser.execute("non-existing-id")).rejects.toBeInstanceOf(
+      AppError
+    );
   });
 });

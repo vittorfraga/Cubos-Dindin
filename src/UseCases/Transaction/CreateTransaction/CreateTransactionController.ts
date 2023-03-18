@@ -14,7 +14,9 @@ export class CreateTransactionController {
     }
 
     if (
-      !["entrada", "income", "saída", "outcome"].includes(type.toLowerCase()) &&
+      !["entrada", "income", "saída", "saida", "outcome"].includes(
+        type.toLowerCase()
+      ) &&
       !["in", "out"].includes(type.toLowerCase())
     ) {
       throw new AppError("Invalid transaction type", 400);
