@@ -1,5 +1,4 @@
-# Cubos Dindin - in Progress!!
-
+# Cubos Dindin 
 ### Refactoring the 3rd module project from Cubos Academy using `typescript`
 
 Link to the original project with `javascript`: https://github.com/vittorfraga/T09M03
