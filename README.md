@@ -17,13 +17,8 @@ Link to the original project with `javascript`: https://github.com/vittorfraga/T
 
 This command will start the server using ts-node-dev, which will transpile the `Typescript` code to `Javascript` at runtime, allowing you to make changes to the code and have the server automatically restart.
 
-4. To run TypeORM migrations, use the following command:
 
-   - npm run typeorm `<command>`
-
-Replace `<command>` with the TypeORM command you wish to execute, for example migration:run .
-
-5. To run the automated tests, use the following command:
+4. To run the automated tests, use the following command:
 
    - npm test
 
